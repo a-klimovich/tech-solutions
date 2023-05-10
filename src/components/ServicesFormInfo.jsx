@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { Typography, List, Space } from "antd";
+import { SERVICES } from '../config';
+import { currensyFormatter } from '../helpers/currensyFormatter';
 
 const {Text, Title} = Typography;
-
 
 const ServicesFormInfo = ({calculatedCoast}) => {
   return (
@@ -16,19 +17,20 @@ const ServicesFormInfo = ({calculatedCoast}) => {
           </Space>
         }
         dataSource={calculatedCoast.services}
-        renderItem={(item) => (
+        renderItem={(serviceName) => (
           <List.Item>
             <List.Item.Meta
               title={
-                calculatedCoast?.packege?.offers?.freeServices?.includes(item) 
+                calculatedCoast?.packege?.offers?.freeServices?.includes(serviceName) 
                 ? <>
-                    <Text mark>[FREE]{' '}</Text>
-                    <Text>{item}</Text>
+                    <Text mark>[FREE]</Text>
+                    <Text>{' '}{serviceName}</Text>
                   </>
                 : <Text>
-                    {item}
+                    {serviceName}
                   </Text>
               }
+              description={SERVICES[serviceName].description}
             />
           </List.Item>
         )}
@@ -39,7 +41,7 @@ const ServicesFormInfo = ({calculatedCoast}) => {
           Total price:
         </Title>
         <Title level={3}>
-          {calculatedCoast.totalPrice || 0}
+          {currensyFormatter(calculatedCoast.totalPrice || 0, 'USD')}
         </Title>
       </Space>
     </div>
