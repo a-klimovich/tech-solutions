@@ -1,17 +1,16 @@
 import { Typography } from "antd";
 import ServicesForm from "./components/ServicesForm";
-import "./App.css";
 
 const { Title } = Typography;
 
-function App() {
+const baseStyles = {
+  marginBottom: "5vh",
+};
+
+const App = () => {
   return (
     <>
-      <Title
-        align='center'
-        style={{
-          marginBottom: '5vh'
-        }}>
+      <Title align='center' style={baseStyles}>
         Select services to connect
       </Title>
 
