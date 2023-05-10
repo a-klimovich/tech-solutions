@@ -27,12 +27,10 @@ const applyPackege = ({year, services, packege}) => {
     0
   );
 
-  const servicesOnActiveFreeServices = Array.from(new Set([...services, ...freeServices]))
-
   return {
     packege,
-    services: servicesOnActiveFreeServices,
-    totalPrice: packegePrice + servicesPrice
+    services: Array.from(new Set([...services, ...freeServices])),
+    totalPrice: packegePrice + servicesPrice,
   };
 };
 
