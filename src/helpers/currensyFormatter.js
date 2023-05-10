@@ -1,10 +1,10 @@
 import { CURRENCY_FORMATS } from '../config/currency';
 
 export const currensyFormatter = (value, format) => {
-  let currency = Intl.NumberFormat(CURRENCY_FORMATS[format].locales, {
+  const { locales, currency } = CURRENCY_FORMATS[format];
+  
+  return Intl.NumberFormat(locales, {
     style: 'currency',
-    currency: CURRENCY_FORMATS[format].currency,
-  });
-
-  return currency.format(value);
+    currency,
+  }).format(value);
 }
